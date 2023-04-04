@@ -5,3 +5,4 @@ target/
 *.class
 .project
 .classpath
+**/.DS_Store
