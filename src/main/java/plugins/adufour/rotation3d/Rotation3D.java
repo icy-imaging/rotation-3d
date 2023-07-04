@@ -1,3 +1,21 @@
+/*
+ * Copyright (c) 2010-2023. Institut Pasteur.
+ *
+ * This file is part of Icy.
+ * Icy is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Icy is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Icy. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package plugins.adufour.rotation3d;
 
 import icy.canvas.IcyCanvas;
@@ -10,27 +28,24 @@ import plugins.adufour.ezplug.EzStoppable;
 import plugins.adufour.ezplug.EzVarInteger;
 import plugins.kernel.canvas.VtkCanvas;
 
-public class Rotation3D extends EzPlug implements EzStoppable
-{
+public class Rotation3D extends EzPlug implements EzStoppable {
     private EzVarInteger stepAngle;
 
     @Override
-    protected void initialize()
-    {
+    protected void initialize() {
         addEzComponent(new EzLabel("Rotation is achieved about the vertical axis"));
         addEzComponent(stepAngle = new EzVarInteger("Angle step", 5, 1, 90, 1));
         stepAngle.setToolTipText("Lower step = slower, smoother rotation");
     }
 
     @Override
-    public void execute()
-    {
-        Viewer activeViewer = getActiveViewer();
+    public void execute() {
+        final Viewer activeViewer = getActiveViewer();
 
         if (activeViewer == null)
             throw new IcyHandledException("No sequence opened.");
 
-        IcyCanvas canvas = activeViewer.getCanvas();
+        final IcyCanvas canvas = activeViewer.getCanvas();
 
         if (!(canvas instanceof VtkCanvas))
             throw new IcyHandledException("Rotation only works on a 3D (VTK) view.");
@@ -41,7 +56,7 @@ public class Rotation3D extends EzPlug implements EzStoppable
         final VtkCanvas c3d = (VtkCanvas) canvas;
         final int sizeT = c3d.getImageSizeT();
 
-        final int step = stepAngle.getValue().intValue();
+        final int step = stepAngle.getValue();
         if ((step <= 0) || (step > 360))
             throw new IcyHandledException("Angle should be in [1..360] range");
 
@@ -52,10 +67,9 @@ public class Rotation3D extends EzPlug implements EzStoppable
         c3d.getRenderedImage(0, 0);
 
         double t = 0d;
-        for (int i = 0; i < n; i++)
-        {
+        for (int i = 0; i < n; i++) {
             final int posT = (int) Math.floor(t);
-            
+
             getUI().setProgressBarValue(i / (double) n);
             getUI().setProgressBarMessage("capturing angle " + i + "/" + n);
 
@@ -73,8 +87,7 @@ public class Rotation3D extends EzPlug implements EzStoppable
     }
 
     @Override
-    public void clean()
-    {
+    public void clean() {
 
     }
 }
