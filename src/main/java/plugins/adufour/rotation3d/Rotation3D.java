@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2023. Institut Pasteur.
+ * Copyright (c) 2010-2024. Institut Pasteur.
  *
  * This file is part of Icy.
  * Icy is free software: you can redistribute it and/or modify
@@ -18,16 +18,20 @@
 
 package plugins.adufour.rotation3d;
 
-import icy.canvas.IcyCanvas;
-import icy.gui.viewer.Viewer;
-import icy.sequence.Sequence;
-import icy.system.IcyHandledException;
+import org.bioimageanalysis.icy.extension.plugin.annotation_.IcyPluginIcon;
+import org.bioimageanalysis.icy.extension.plugin.annotation_.IcyPluginName;
+import org.bioimageanalysis.icy.gui.canvas.IcyCanvas;
+import org.bioimageanalysis.icy.gui.canvas.VtkCanvas;
+import org.bioimageanalysis.icy.gui.viewer.Viewer;
+import org.bioimageanalysis.icy.model.sequence.Sequence;
+import org.bioimageanalysis.icy.system.IcyHandledException;
 import plugins.adufour.ezplug.EzLabel;
 import plugins.adufour.ezplug.EzPlug;
 import plugins.adufour.ezplug.EzStoppable;
 import plugins.adufour.ezplug.EzVarInteger;
-import plugins.kernel.canvas.VtkCanvas;
 
+@IcyPluginName("3D Rotation")
+@IcyPluginIcon(path = "/3d-rotation.png")
 public class Rotation3D extends EzPlug implements EzStoppable {
     private EzVarInteger stepAngle;
 
@@ -47,13 +51,12 @@ public class Rotation3D extends EzPlug implements EzStoppable {
 
         final IcyCanvas canvas = activeViewer.getCanvas();
 
-        if (!(canvas instanceof VtkCanvas))
+        if (!(canvas instanceof final VtkCanvas c3d))
             throw new IcyHandledException("Rotation only works on a 3D (VTK) view.");
 
         activeViewer.toFront();
 
         final Sequence rotatedView = new Sequence("3D rotated view of " + getActiveSequence().getName());
-        final VtkCanvas c3d = (VtkCanvas) canvas;
         final int sizeT = c3d.getImageSizeT();
 
         final int step = stepAngle.getValue();
