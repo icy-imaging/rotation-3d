@@ -32,7 +32,7 @@ For developers, see our [Contributing guidelines](https://gitlab.pasteur.fr/bia/
 
 <!-- list main functions, explain architecture, classname, give info on how to get started with the plugin. If applicable, how the package compares to other similar packages and/or how it relates to other packages -->
 
-Classname: `plugins.adufour.rotation3d.Rotation3D`
+Classname: `plugins.adufour.rotation.Rotation3D`
 
 
 

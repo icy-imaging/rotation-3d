@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2024. Institut Pasteur.
+ * Copyright (c) 2010-2025. Institut Pasteur.
  *
  * This file is part of Icy.
  * Icy is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
  * along with Icy. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package plugins.adufour.rotation3d;
+package plugins.adufour.rotation;
 
 import org.bioimageanalysis.icy.extension.plugin.annotation_.IcyPluginIcon;
 import org.bioimageanalysis.icy.extension.plugin.annotation_.IcyPluginName;
@@ -31,7 +31,7 @@ import plugins.adufour.ezplug.EzStoppable;
 import plugins.adufour.ezplug.EzVarInteger;
 
 @IcyPluginName("3D Rotation")
-@IcyPluginIcon(path = "/3d-rotation.png")
+@IcyPluginIcon(path = "/plugins/adufour/rotation/3d-rotation.png")
 public class Rotation3D extends EzPlug implements EzStoppable {
     private EzVarInteger stepAngle;
 
