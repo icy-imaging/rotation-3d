@@ -18,12 +18,12 @@
 
 package plugins.adufour.rotation;
 
-import org.bioimageanalysis.icy.extension.plugin.annotation_.IcyPluginName;
-import org.bioimageanalysis.icy.gui.canvas.IcyCanvas;
-import org.bioimageanalysis.icy.gui.canvas.VtkCanvas;
-import org.bioimageanalysis.icy.gui.viewer.Viewer;
-import org.bioimageanalysis.icy.model.sequence.Sequence;
-import org.bioimageanalysis.icy.system.IcyHandledException;
+import fr.icy.extension.plugin.annotation_.IcyPluginName;
+import fr.icy.gui.canvas.IcyCanvas;
+import fr.icy.gui.canvas.VtkCanvas;
+import fr.icy.gui.viewer.Viewer;
+import fr.icy.model.sequence.Sequence;
+import fr.icy.system.IcyHandledException;
 import plugins.adufour.ezplug.EzLabel;
 import plugins.adufour.ezplug.EzPlug;
 import plugins.adufour.ezplug.EzStoppable;
